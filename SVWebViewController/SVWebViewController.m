@@ -122,6 +122,7 @@
         _webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _webView.delegate = self;
         _webView.scalesPageToFit = YES;
+        _webView.opaque = NO;
     }
     return _webView;
 }
