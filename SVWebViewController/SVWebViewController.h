@@ -10,6 +10,9 @@
 
 @interface SVWebViewController : UIViewController
 
+@property (strong, nonatomic) UIBarStyle *barStyle;
+@property (strong, nonatomic) UIColor *tintColor;
+
 - (id)initWithAddress:(NSString*)urlString;
 - (id)initWithURL:(NSURL*)URL;
 
