@@ -123,6 +123,7 @@
         _webView.delegate = self;
         _webView.scalesPageToFit = YES;
         _webView.opaque = NO;
+        _webView.backgroundColor = [UIColor whiteColor];
     }
     return _webView;
 }
