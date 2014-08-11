@@ -47,4 +47,8 @@
     self.navigationBar.tintColor = self.barsTintColor;
 }
 
+- (void)doneButtonClicked:(id)sender {
+  // Override
+}
+
 @end
