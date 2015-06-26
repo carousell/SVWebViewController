@@ -15,22 +15,32 @@
 
 @end
 
+@interface SVWebViewController (DoneButton)
+
+- (void)doneButtonTapped:(id)sender;
+
+@end
+
 
 @implementation SVModalWebViewController
 
 #pragma mark - Initialization
 
 
-- (id)initWithAddress:(NSString*)urlString {
+- (instancetype)initWithAddress:(NSString*)urlString {
     return [self initWithURL:[NSURL URLWithString:urlString]];
 }
 
-- (id)initWithURL:(NSURL *)URL {
-    self.webViewController = [[SVWebViewController alloc] initWithURL:URL];
+- (instancetype)initWithURL:(NSURL *)URL {
+    return [self initWithURLRequest:[NSURLRequest requestWithURL:URL]];
+}
+
+- (instancetype)initWithURLRequest:(NSURLRequest *)request {
+    self.webViewController = [[SVWebViewController alloc] initWithURLRequest:request];
     if (self = [super initWithRootViewController:self.webViewController]) {
         UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                     target:self.webViewController
-                                                                                    action:@selector(doneButtonClicked:)];
+                                                                                    action:@selector(doneButtonTapped:)];
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
             self.webViewController.navigationItem.leftBarButtonItem = doneButton;
@@ -47,8 +57,14 @@
     self.navigationBar.tintColor = self.barsTintColor;
 }
 
-- (void)doneButtonClicked:(id)sender {
-  // Override
+#pragma mark - Delegate
+
+- (void)setWebViewDelegate:(id<UIWebViewDelegate>)webViewDelegate {
+    self.webViewController.delegate = webViewDelegate;
+}
+
+- (id<UIWebViewDelegate>)webViewDelegate {
+    return self.webViewController.delegate;
 }
 
 @end
