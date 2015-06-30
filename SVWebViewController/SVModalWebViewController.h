@@ -10,11 +10,18 @@
 
 @interface SVModalWebViewController : UINavigationController
 
+@property (nonatomic, weak) id<UIWebViewDelegate> webViewDelegate;
+
 - (instancetype)initWithAddress:(NSString*)urlString;
 - (instancetype)initWithURL:(NSURL *)URL;
 - (instancetype)initWithURLRequest:(NSURLRequest *)request;
 
-@property (nonatomic, strong) UIColor *barsTintColor;
-@property (nonatomic, weak) id<UIWebViewDelegate> webViewDelegate;
+- (void)setNavbarTintColor:(UIColor *)navbarTintColor;
+- (void)setNavbarBarTintColor:(UIColor *)navbarBarTintColor;
+- (void)setNavbarBarStyle:(UIBarStyle *)navbarBarStyle;
+
+- (void)setToolbarTintColor:(UIColor *)toolbarTintColor;
+- (void)setToolbarBarTintColor:(UIColor *)toolbarBarTintColor;
+- (void)setToolbarBarStyle:(UIBarStyle *)toolbarBarStyle;
 
 @end

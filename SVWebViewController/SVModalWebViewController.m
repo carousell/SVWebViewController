@@ -13,6 +13,14 @@
 
 @property (nonatomic, strong) SVWebViewController *webViewController;
 
+@property (nonatomic, strong) UIColor *navbarTintColor;
+@property (nonatomic, strong) UIColor *navbarBarTintColor;
+@property (nonatomic, assign) UIBarStyle *navbarBarStyle;
+
+@property (nonatomic, strong) UIColor *toolbarTintColor;
+@property (nonatomic, strong) UIColor *toolbarBarTintColor;
+@property (nonatomic, assign) UIBarStyle *toolbarBarStyle;
+
 @end
 
 @interface SVWebViewController (DoneButton)
@@ -54,7 +62,15 @@
     [super viewWillAppear:NO];
     
     self.webViewController.title = self.title;
-    self.navigationBar.tintColor = self.barsTintColor;
+    
+    if (self.navbarTintColor) self.navigationBar.tintColor = self.navbarTintColor;
+    if (self.navbarBarTintColor) self.navigationBar.barTintColor = self.navbarBarTintColor;
+    if (self.navbarBarStyle) self.navigationBar.barStyle = self.navbarBarStyle;
+    self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: self.navigationBar.tintColor};
+    
+    [self.webViewController setToolbarTintColor:self.toolbarTintColor];
+    [self.webViewController setToolbarBarTintColor:self.toolbarBarTintColor];
+    [self.webViewController setToolbarBarStyle:self.toolbarBarStyle];
 }
 
 #pragma mark - Delegate

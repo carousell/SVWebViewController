@@ -21,6 +21,10 @@
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) NSURLRequest *request;
 
+@property (nonatomic, strong) UIColor *toolbarTintColor;
+@property (nonatomic, strong) UIColor *toolbarBarTintColor;
+@property (nonatomic, assign) UIBarStyle toolbarBarStyle;
+
 @end
 
 
@@ -178,7 +182,6 @@
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        CGFloat toolbarWidth = 250.0f;
         fixedSpace.width = 35.0f;
         
         NSArray *items = [NSArray arrayWithObjects:
@@ -191,11 +194,6 @@
                           fixedSpace,
                           self.actionBarButtonItem,
                           nil];
-        
-        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, toolbarWidth, 44.0f)];
-        toolbar.items = items;
-        toolbar.barStyle = self.barStyle != UIBarStyleDefault ? self.barStyle : self.navigationController.navigationBar.barStyle;
-        toolbar.tintColor = self.tintColor ? self.tintColor : self.navigationController.navigationBar.tintColor;
         self.navigationItem.rightBarButtonItems = items.reverseObjectEnumerator.allObjects;
     }
     
@@ -212,8 +210,10 @@
                           fixedSpace,
                           nil];
         
-        self.navigationController.toolbar.barStyle = self.barStyle != UIBarStyleDefault ? self.barStyle : self.navigationController.navigationBar.barStyle;
-        self.navigationController.toolbar.tintColor = self.tintColor ? self.tintColor : self.navigationController.navigationBar.tintColor;
+        self.navigationController.toolbar.tintColor = self.toolbarTintColor ? self.toolbarTintColor : self.navigationController.navigationBar.tintColor;
+        self.navigationController.toolbar.barTintColor = self.toolbarBarTintColor ? self.toolbarBarTintColor : self.navigationController.navigationBar.barTintColor;
+        self.navigationController.toolbar.barStyle = self.toolbarBarStyle ? self.toolbarBarStyle : self.navigationController.navigationBar.barStyle;
+        
         self.toolbarItems = items;
     }
 }

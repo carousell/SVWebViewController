@@ -8,12 +8,14 @@
 
 @interface SVWebViewController : UIViewController
 
+@property (nonatomic, weak) id<UIWebViewDelegate> delegate;
+
 - (instancetype)initWithAddress:(NSString*)urlString;
 - (instancetype)initWithURL:(NSURL*)URL;
 - (instancetype)initWithURLRequest:(NSURLRequest *)request;
 
-@property (assign, nonatomic) UIBarStyle barStyle;
-@property (strong, nonatomic) UIColor *tintColor;
-@property (nonatomic, weak) id<UIWebViewDelegate> delegate;
+- (void)setToolbarTintColor:(UIColor *)toolbarTintColor;
+- (void)setToolbarBarTintColor:(UIColor *)toolbarBarTintColor;
+- (void)setToolbarBarStyle:(UIBarStyle)toolbarBarStyle;
 
 @end
